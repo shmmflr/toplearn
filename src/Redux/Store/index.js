@@ -1,6 +1,6 @@
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import { getAllCourseS } from '../Actions/CourseS';
+import { getAllCourses} from '../Actions/Courses';
 import { reducers } from '../Reducerd';
 
 export const store = createStore(
@@ -15,4 +15,4 @@ export const store = createStore(
 store.subscribe(() => console.log(store.getState()));
 
 //initialize
-store.dispatch(getAllCourseS());
+store.dispatch(getAllCourses());

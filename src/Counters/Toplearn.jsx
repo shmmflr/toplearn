@@ -9,18 +9,23 @@ import Profile from '../Components/Profile/Profile';
 import EditProfile from '../Components/Profile/EditProfile';
 import SingleCourse from '../Components/Course/SingleCourse';
 import NotFound from '../Components/Common/NotFound';
+import { Paginate } from '../Components/utils/Paginate';
+import { useSelector } from 'react-redux';
 
 const Toplearn = () => {
+  const courses = useSelector((state) => state.courses);
+  const indexCourse = Paginate(courses, 1, 8);
+
   return (
     <MainLayout>
       <Switch>
         <Route path="/register" component={Register} />
         <Route path="/login" component={Login} />
-        <Route path="/allcourses" exact component={AllCourses} />
-        <Route path="/profile" exact component={Profile} />
-        <Route path="/editprofile" exact component={EditProfile} />
-        <Route path="/singlecourse" exact component={SingleCourse} />
-        <Route path="/" exact component={Course} />
+        <Route path="/allcourses" component={AllCourses} />
+        <Route path="/profile" component={Profile} />
+        <Route path="/editprofile" component={EditProfile} />
+        <Route path="/course/:id" component={SingleCourse} />
+        <Route path="/" exact render={() => <Course courses={indexCourse} />} />
         <Route path="*" exact component={NotFound} />
       </Switch>
     </MainLayout>

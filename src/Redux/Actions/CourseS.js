@@ -1,8 +1,9 @@
-import { getCourseS } from '../../Services/CourseSService';
+import { getCourses } from '../../Services/CoursesServices';
 
-export const getAllCourseS = () => {
+export const getAllCourses = () => {
   return async (dispatch) => {
-    const { data } = await getCourseS();
+    const { data } = await getCourses();
+    console.log(data)
     await dispatch({ type: 'INIT', payload: data.courses });
   };
 };
