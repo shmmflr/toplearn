@@ -1,11 +1,17 @@
 import React, { Fragment, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import SimpleValidatorReact from 'simple-react-validator';
-import { withRouter } from 'react-router';
+import { Redirect, withRouter } from 'react-router';
 import { loginUser } from '../../Services/UserServices';
 import { errorMessage, successMessage } from '../utils/Message';
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser } from '../../Redux/Actions/User';
+import { tokenDecoded } from '../utils/TokenDecoded';
+import { isEmpty } from 'lodash';
 
 const Login = ({ history }) => {
+  const user = useSelector(state => state.user)
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -34,6 +40,7 @@ const Login = ({ history }) => {
           successMessage('خوش آمدید');
           console.log(data);
           localStorage.setItem('token', data.token);
+          dispatch(addUser(tokenDecoded(data.token).payload.user));
           history.replace('/');
         }
       } else {
@@ -45,6 +52,7 @@ const Login = ({ history }) => {
     }
   };
 
+  if (!isEmpty(user)) return <Redirect to="/" />;
   return (
     <Fragment>
       <main className="client-page">
@@ -71,7 +79,7 @@ const Login = ({ history }) => {
                   value={email}
                   onChange={(e) => {
                     setEmail(e.target.value);
-                    validator.current.showMessageFor("email");
+                    validator.current.showMessageFor('email');
                   }}
                 />
                 {validator.current.message('email', email, 'email|required')}

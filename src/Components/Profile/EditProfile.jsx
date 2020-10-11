@@ -1,8 +1,12 @@
 import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
+import { useDispatch, useSelector } from 'react-redux';
+
 import UserAccount from './UserAccount';
 
 const EditProfile = () => {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   return (
     <Fragment>
       <div className="container">
@@ -35,50 +39,8 @@ const EditProfile = () => {
                     <h1> ویرایش حساب کاربری </h1>
                   </header>
                   <div className="inner form-layer">
-                    <form action="" method="">
+                    <form onSubmit={(event) => event.preventDefault()}>
                       <div className="row">
-                        <div className="col-md-7 col-sm-8 col-xs-12">
-                          <div className="input-group">
-                            <span className="input-group-addon" id="username">
-                              <i className="zmdi zmdi-account"></i>
-                            </span>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="نام و نام خانوادگی"
-                              aria-describedby="username"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-7 col-sm-8 col-xs-12">
-                          <div className="input-group">
-                            <span
-                              className="input-group-addon"
-                              id="email-address"
-                            >
-                              <i className="zmdi zmdi-email"></i>
-                            </span>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="ایمیل"
-                              aria-describedby="email-address"
-                            />
-                          </div>
-                        </div>
-                        <div className="col-md-7 col-sm-8 col-xs-12">
-                          <div className="input-group">
-                            <span className="input-group-addon" id="password">
-                              <i className="zmdi zmdi-lock"></i>
-                            </span>
-                            <input
-                              type="text"
-                              className="form-control"
-                              placeholder="رمز عبور "
-                              aria-describedby="password"
-                            />
-                          </div>
-                        </div>
                         <div className="col-md-7 col-sm-8 col-xs-12">
                           <div className="input-group">
                             <span className="input-group-addon" id="username">

@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSingleCourse } from '../../Redux/Actions/Course';
-import config from '../../Services/config.json'
+import config from '../../Services/config.json';
 
 const SingleCourse = ({ match }) => {
   const course = useSelector((state) => state.course);
@@ -21,11 +21,9 @@ const SingleCourse = ({ match }) => {
           <div className="row">
             <div className="col-md-8 col-sm-12 col-xs-12 pull-left">
               <section className="term-description">
-                <img src={`${config.toplearnapi}/${course.imageUrl}`} />
+                <img src={`${config.localapi}/${course.imageUrl}`} />
 
-                <p>
-                 {course.info}
-                </p>
+                <p>{course.info}</p>
 
                 <h2> سرفصل های این دوره : </h2>
                 <ul>

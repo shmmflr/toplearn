@@ -1,10 +1,11 @@
 import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 
 import UserAccount from './UserAccount';
 
 const Profile = () => {
+  const user = useSelector((state) => state.user);
   return (
     <Fragment>
       <div className="container">
@@ -42,7 +43,7 @@ const Profile = () => {
                         <li>
                           {' '}
                           <i className="zmdi zmdi-account"></i> نام و نام
-                          خانوادگی : محمدامین معتمدیان{' '}
+                          خانوادگی : {user.fullname}{' '}
                         </li>
                         <li>
                           {' '}
@@ -51,8 +52,8 @@ const Profile = () => {
                         </li>
                         <li>
                           {' '}
-                          <i className="zmdi zmdi-email"></i> ایمیل :
-                          AminRPG98@gmail.com{' '}
+                          <i className="zmdi zmdi-email"></i> ایمیل :{"  "}
+                          {user.email}{' '}
                         </li>
                         <li>
                           {' '}

@@ -21,7 +21,7 @@ const Course = ({ courses, location }) => {
             >
               <article>
                 <Link to={`/course/${course._id}`} className="img-layer">
-                  <img src={`${config.toplearnapi}/${course.imageUrl}`} />
+                  <img src={`${config.localapi}/${course.imageUrl}`} />
                 </Link>
                 <h2>
                   <Link to={`/course/${course._id}`}>{course.title}</Link>

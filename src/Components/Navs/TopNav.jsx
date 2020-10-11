@@ -1,7 +1,10 @@
+import { isEmpty } from 'lodash';
 import React, { Fragment } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, NavLink } from 'react-router-dom';
 
 const TopNav = () => {
+  const user = useSelector((state) => state.user);
   return (
     <Fragment>
       <nav>
@@ -20,26 +23,24 @@ const TopNav = () => {
           </div>
           <div className="col-sm-6 col-xs-12">
             <div className="clientarea">
-              <div className="signin ">
-              {/* <NavLink to="/login" activeStyle={{ color: 'lime' }}>
-                  {' '}
-                  ورود{' '}
-                </NavLink>{' '}
-                /
-                <NavLink to="/register" activeStyle={{ color: 'lime' }}>
-                  {' '}
-                  عضویت{' '}
-                </NavLink>{' '} */}
-                <NavLink to="/login" activeStyle={{ color: 'lime' }}>
-                  {' '}
-                  ورود{' '}
-                </NavLink>{' '}
-                /
-                <NavLink to="/register" activeStyle={{ color: 'lime' }}>
-                  {' '}
-                  عضویت{' '}
-                </NavLink>{' '}
-              </div>
+              {isEmpty(user) ? (
+                <div className="signin ">
+                  <NavLink to="/login" activeStyle={{ color: 'lime' }}>
+                    {' '}
+                    ورود{' '}
+                  </NavLink>{' '}
+                  /
+                  <NavLink to="/register" activeStyle={{ color: 'lime' }}>
+                    {' '}
+                    عضویت{' '}
+                  </NavLink>{' '}
+                </div>
+              ) : (
+                <div className="signin ">
+                  <Link to="/profile"> {user.fullname} خوش اومدی </Link> /
+                  <Link to="/logout"> خروج </Link>{' '}
+                </div>
+              )}
             </div>
           </div>
         </div>

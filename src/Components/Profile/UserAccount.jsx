@@ -1,7 +1,9 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 const UserAccount = () => {
+  const user = useSelector((state) => state.user);
   return (
     <aside>
       <div className="avatar-layer">
@@ -12,7 +14,7 @@ const UserAccount = () => {
           <img src="images/pic/avatar.jpg" />
         </div>
         <div className="detail">
-          <span>محمد امین معتمدیان </span>
+          <span>{user.fullname} </span>
           <span> عضویت : 01/01/1395 </span>
         </div>
       </div>
